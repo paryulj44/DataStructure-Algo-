@@ -1,0 +1,42 @@
+question link :- https://practice.geeksforgeeks.org/problems/level-order-traversal/1
+solution :- 
+
+/*
+This is also call as BFS traversal.
+It can be implement using recursion but tc - o(n^2) & sc -o(n).
+
+Level Order Binary Tree Traversal Using Queue
+For each node, first, the node is visited and then it’s child nodes are put in a FIFO queue. Then again the first node is popped out &
+then it’s child nodes are put in a FIFO queue and repeat until queue becomes empty.
+
+Follow the below steps to Implement the above idea:
+
+1. Create an empty queue q and push root in q.
+2. Run While loop until q is not empty. 
+3. Initialize temp_node = q.front() and print temp_node->data.
+4. Push temp_node’s children i.e. temp_node -> left then temp_node -> right to q
+5. Pop front node from q.
+Below is the Implementation of the above approach:   tc-o(n) & sc- o(n)
+*/
+
+//Function to return the level order traversal of a tree.
+    static ArrayList <Integer> levelOrder(Node node) 
+    {
+        ArrayList<Integer> ans = new ArrayList<>();
+        Queue<Node> q = new ArrayDeque<>();
+        int counter = 0;
+        q.add(node);
+
+        while(q.size() > 0){
+            counter = q.size();
+            for(int i=0; i<counter; i++){
+                Node curr = q.remove();
+                ans.add(curr.data);
+                if(curr.left != null)
+                    q.add(curr.left);
+                if(curr.right != null)
+                    q.add(curr.right);
+            }
+        }
+        return ans;
+    }
