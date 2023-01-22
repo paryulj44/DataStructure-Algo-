@@ -1,0 +1,21 @@
+ques :- https://leetcode.com/problems/diameter-of-binary-tree/description/
+explanation link :- https://leetcode.com/problems/diameter-of-binary-tree/solutions/2344583/simple-solution-using-recursive-
+traversal-of-tree-c-o-n-with-comments-and-explanation/?q=avaneesh&orderBy=most_relevant
+
+solution :-
+int maxDiameter = 0;
+    public int heightOfBinaryTree(TreeNode root){
+        if(root == null) return 0;
+        int left = heightOfBinaryTree(root.left);
+        int right = heightOfBinaryTree(root.right);
+
+        maxDiameter = Math.max(maxDiameter, left + right + 1);
+
+        return Math.max(left, right) + 1;
+    }
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        heightOfBinaryTree(root);
+
+        return maxDiameter-1;
+    }
