@@ -1,0 +1,30 @@
+ques :- https://leetcode.com/problems/binary-tree-postorder-traversal/
+n-ary ques :- https://leetcode.com/problems/n-ary-tree-postorder-traversal/
+
+// List<Integer> ans = new ArrayList<>();
+    public List<Integer> postorderTraversal(TreeNode root) {
+        // recursion
+        // if(root == null) return ans;
+
+        // postorderTraversal(root.left);
+        // postorderTraversal(root.right);
+        // ans.add(root.val);
+
+        // return ans;
+
+        // iterative
+        List<Integer> ans = new ArrayList<>();
+        Stack<TreeNode> st = new Stack();
+        TreeNode curr = root;
+
+        while(curr != null || !st.isEmpty()){
+            while(curr != null){
+                st.push(curr.right);
+                st.push(curr);
+                curr = curr.left;
+            }
+            curr = st.pop();
+            ans.add(curr.val);
+        }
+        return ans;
+    }
