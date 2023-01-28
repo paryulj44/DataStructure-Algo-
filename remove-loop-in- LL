@@ -1,0 +1,31 @@
+ques :- https://practice.geeksforgeeks.org/problems/remove-loop-in-linked-list/1
+Similar ques :- geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/
+
+solution :- 
+public static void removeLoop(Node head){
+        // code here
+        // remove the loop without losing any nodes
+        Node fast=head;
+        Node slow=head;
+        boolean isCycle = false;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast) {
+                isCycle = true;
+                break;
+            }
+        }
+        
+        if(isCycle){
+            slow = head;
+            while(slow != fast){
+                slow = slow.next;
+                fast = fast.next;
+            }
+            
+            while(fast.next != slow)
+            fast = fast.next;
+            fast.next = null;
+        }
+    }
