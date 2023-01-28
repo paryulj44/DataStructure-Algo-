@@ -1,0 +1,16 @@
+ques :- https://practice.geeksforgeeks.org/problems/detect-loop-in-linked-list/1
+
+solution :- using tortoise & hare method / slow & fast ptr.
+// tc - o(n) , sc - o(1)
+
+public static boolean detectLoop(Node head){
+        Node slow = head, fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            
+            if(slow == fast)
+                return true;
+        }
+        return false;
+    }
