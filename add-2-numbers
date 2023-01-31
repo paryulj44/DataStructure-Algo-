@@ -1,0 +1,42 @@
+ques :- https://practice.geeksforgeeks.org/problems/add-two-numbers-represented-by-linked-lists/1
+
+solution :-
+public static Node reverse(Node head){
+        Node prev = null;
+        Node curr = head;
+        Node ahead = null;
+
+        while(curr != null){
+            ahead = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = ahead;
+        }
+
+        return prev;
+    }
+    
+    //Function to add two numbers represented by linked list.
+    static Node addTwoLists(Node l1, Node l2){
+        l1 = reverse(l1);
+        l2 = reverse(l2);
+
+       Node dummy = new Node(-1);
+       Node head = dummy, tail = dummy;
+
+       int carry = 0;
+       while(l1 != null || l2 != null || carry>0){
+           int d1 = (l1==null) ? 0 : l1.data;
+           int d2 = (l2==null) ? 0 : l2.data;
+
+           Node temp = new Node((d1+d2+carry)%10);
+           carry = (d1+d2+carry)/10;
+           tail.next = temp;
+           tail = temp;
+
+           if(l1 != null) l1 = l1.next;
+           if(l2 != null) l2 = l2.next;
+       }
+
+       return reverse(dummy.next);
+    }
