@@ -1,0 +1,56 @@
+ques :- https://practice.geeksforgeeks.org/problems/sort-a-linked-list/1
+
+static Node merge2LL(Node head1, Node head2){
+        if(head1 == null) return head2;
+        if(head2 == null) return head1;
+        
+        Node dummy = new Node(-1);
+        Node tail = dummy;
+        while(head1 != null && head2 != null){
+        if(head1.data <= head2.data){
+            tail.next = head1;
+            head1 = head1.next;
+        }else{
+            tail.next = head2;
+            head2 = head2.next;
+        }
+        tail = tail.next;
+        }
+        if(head1 != null) tail.next = head1;
+        else tail.next = head2;
+
+        return dummy.next;
+    }
+    
+    static Node getMid(Node head){
+        if(head == null)
+            return head;
+
+        Node slow = head, fast = head;
+        while(fast.next != null && fast.next.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        return slow;//3
+    }
+    
+    static Node helper(Node head){
+        if(head == null || head.next == null)
+            return head;
+            
+        Node mid = getMid(head);//3, 5
+        Node midNext = mid.next;//4, 2
+        mid.next = null;
+        
+        Node left = helper(head);
+        Node right = helper(mid.next);
+        
+        return merge2LL(left, right);
+    }
+
+    //Function to sort the given linked list using Merge Sort.
+    static Node mergeSort(Node head)
+    {
+        return helper(head);
+    }
