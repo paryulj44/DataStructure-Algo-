@@ -1,0 +1,30 @@
+ ques :- https://leetcode.com/problems/middle-of-the-linked-list/
+ 
+ public ListNode middleNode(ListNode head) {
+        // int cnt=0;
+        // ListNode temp=head;
+        // // ListNode temp1=head;
+        // while(temp!=null){
+        //     temp = temp.next;
+        //     cnt++;
+        // }
+        // int len = cnt/2;
+        // int s = 0;
+        // temp = head;
+        // while(s<len){
+        //    temp = temp.next;
+        //     s++;
+        // }
+        // return temp;
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+        // both while condition cannot be false at same time
+        // fast == null in case of even number of elements
+        //fast.next will be true in case of odd numbers.
+    }
