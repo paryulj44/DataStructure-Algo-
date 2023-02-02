@@ -1,0 +1,14 @@
+ques :- https://practice.geeksforgeeks.org/problems/circular-linked-list/1
+
+ boolean isCircular(Node head)
+    {
+	// Your code here
+	Node curr = head;
+	while(curr != null){
+	    curr = curr.next;
+	    if(head == curr)
+	        return true;
+	}
+	return false;
+	
+    }
