@@ -1,0 +1,24 @@
+Node flatten(Node root)
+    {
+	// Your code here
+	ArrayList<Integer> al = new ArrayList();
+	    Node curr = root;
+	    while(curr != null){
+	        Node temp = curr;
+	        while(temp != null){
+	            al.add(temp.data);
+	            temp = temp.bottom;
+	        }
+	        curr = curr.next;
+	    }
+	    Collections.sort(al);
+	    Node resHead = new Node(0);
+	    Node res = resHead;
+	    for(int i = 0;i < al.size();i++){
+	        Node temp = new Node(al.get(i));
+	        res.bottom = temp;
+	        res = res.bottom;
+	    }
+	    res.bottom = null;
+	    return resHead.bottom;
+    }
